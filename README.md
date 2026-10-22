@@ -14,18 +14,22 @@
 
 <p align="center"><sub>All endpoints are OpenAI SDK-compatible unless noted. Each link points to the provider's API key page.</sub></p>
 
+<p align="center"><sub>All of those free LLM APIs are available at <a href="https://manifest.build">manifest.build</a> - make reliable agents.</sub></p>
+
 <hr>
 
+<h3 align="center">Sponsors</h3>
+
 <p align="center">
-	<a href="https://manifest.build">
+	<a href="https://okapi.bot">
 		<picture>
-			<source media="(prefers-color-scheme: dark)" srcset="media/manifest-logo-dark.png">
-			<img src="media/manifest-logo-light.png" width="240" alt="Manifest">
+			<source media="(prefers-color-scheme: dark)" srcset="media/okapi-logo-dark.svg">
+			<img src="media/okapi-logo-light.svg" width="180" alt="Okapi">
 		</picture>
 	</a>
 </p>
 
-<p align="center"><em>All of those free LLM APIs are available at <a href="https://manifest.build">manifest.build</a> - make reliable agents.</em></p>
+<hr>
 
 ## Contents
 
