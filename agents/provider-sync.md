@@ -89,6 +89,18 @@ If no provider page confirms the claim: change nothing. Put the issue in the ❓
 Test: rule R1 removed a model that the provider description names.
 Action: remove that name from the description. Change nothing else in it.
 
+### R5. Check the documentation when a provider cannot be tested
+Test: every model of the provider is SKIPPED or has httpStatus 401 or 403 in the latest
+probe report, so no probe can confirm or deny its rows. Today this is the case for
+SiliconFlow and ModelScope (signup needs mainland-China identity verification).
+Action: open the provider's official pricing or model page, linked in its footnote.
+- A row whose model the page no longer marks free: remove it. Cite the page in the PR.
+- A model that the page marks free and that is not in data.json: do not add it. Put it in
+  the ❓ section: "<provider> marks <model> free. Add it? My take: <answer>."
+- If the page does not load: change nothing. Put the provider in the ❓ section.
+Do this check at most once a week per provider, on Mondays.
+Example: SiliconFlow's pricing page stopped marking `Qwen/Qwen3-8B` free. Remove the row.
+
 ## Pull request format
 
 Title: `Data sync YYYY-MM-DD: <n> changes`
