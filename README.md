@@ -149,11 +149,11 @@ Free tier, no credit card. Ultra-fast LPU inference. [^2]
 
 Base URL: `https://api.groq.com/openai/v1`
 
-| Model Name            | Context | Max Output | Modality | Rate Limit        |
-| --------------------- | ------- | ---------- | -------- | ----------------- |
-| `openai/gpt-oss-120b` | 131K    | 65K        | Text     | 30 RPM, 1,000 RPD |
-| `openai/gpt-oss-20b`  | 131K    | 65K        | Text     | 30 RPM, 1,000 RPD |
-| `qwen/qwen3.8-27b`    | 131K    | 16K        | Text     | 30 RPM, 1,000 RPD |
+| Model Name            | Context | Max Output | Modality     | Rate Limit        |
+| --------------------- | ------- | ---------- | ------------ | ----------------- |
+| `openai/gpt-oss-120b` | 131K    | 65K        | Text         | 30 RPM, 1,000 RPD |
+| `openai/gpt-oss-20b`  | 131K    | 65K        | Text         | 30 RPM, 1,000 RPD |
+| `qwen/qwen3.8-27b`    | 131K    | 16K        | Text + Image | 30 RPM, 1,000 RPD |
 
 ### [Hugging Face](https://huggingface.co/settings/tokens) 🇺🇸
 
@@ -179,7 +179,6 @@ Base URL: `https://api.kilo.ai/api/gateway`
 | Model Name                                           | Context | Max Output | Modality      | Rate Limit |
 | ---------------------------------------------------- | ------- | ---------- | ------------- | ---------- |
 | `nvidia/nemotron-3-ultra-550b-a55b:free`             | 1M      | 65K        | Text          | 200 req/hr |
-| `stepfun/step-3.7-flash:free`                        | 262K    | 262K       | Text + Vision | 200 req/hr |
 | `nvidia/nemotron-3-super-120b-a12b:free`             | 262K    | 262K       | Text          | 200 req/hr |
 | `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free` | 256K    | 65K        | Multimodal    | 200 req/hr |
 | `poolside/laguna-s-2.1:free`                         | 262K    | 32K        | Text (code)   | 200 req/hr |
@@ -191,10 +190,12 @@ Base URL: `https://api.kilo.ai/api/gateway`
 | `liquid/lfm-2.5-2.6b:free`                           | 64K     | 8K         | Text          | 200 req/hr |
 | `kilo-auto/free`                                     | 256K    | 32K        | Text          | 200 req/hr |
 | `inclusionai/ling-3.1-flash`                         | 262K    | 32K        | Text          | 200 req/hr |
-| `inclusionai/ling-3.0-flash-sante:free`              | 262K    | 32K        | Text          | 200 req/hr |
 | `apodex/apodex-1.1-mini:free`                        | 262K    | 235K       | Text          | 200 req/hr |
-| `qwen/qwen3.8-27b:free`                              | 262K    | 235K       | Multimodal    | 200 req/hr |
 | `dots-studio/dots-3-note-preview:free`               | 512K    | 460K       | Text + Vision | 200 req/hr |
+| `recursive/flint-v1.0:free`                          | 262K    | 235K       | Text (code)   | 200 req/hr |
+| `xingchen-agi/xing4.0-29b-a4b:free`                  | 262K    | 235K       | Text          | 200 req/hr |
+| `nvidia/nemotron-3.5-super-vl:free`                  | 1M      | 131K       | Multimodal    | 200 req/hr |
+| `reflection/beam-free`                               | 1M      | 131K       | Text          | 200 req/hr |
 
 ### [LLM7.io](https://token.llm7.io) 🇬🇧
 
@@ -207,7 +208,8 @@ Base URL: `https://api.llm7.io/v1`
 | `gpt-oss:20b`              | 128K    | —          | Text             | 60 RPM, 250 req/hr (free token) |
 | mistral-Nemo-Instruct-2407 | 128K    | —          | Text             | 60 RPM, 250 req/hr (free token) |
 | minimax-m2.7               | 180K    | —          | Text (reasoning) | 60 RPM, 250 req/hr (free token) |
-| DeepSeek-V4-Flash-0731     | 400K    | —          | Text (reasoning) | 60 RPM, 250 req/hr (free token) |
+| `nemotron-3-nano:30b`      | 1M      | —          | Text (reasoning) | 60 RPM, 250 req/hr (free token) |
+| codestral-latest           | 32K     | —          | Text             | 60 RPM, 250 req/hr (free token) |
 
 ### [ModelScope](https://modelscope.cn/my/myaccesstoken) 🇨🇳
 
@@ -262,25 +264,29 @@ Base URL: `https://ollama.com/api`
 
 Base URL: `https://openrouter.ai/api/v1`
 
-| Model Name                               | Context | Max Output | Modality             | Rate Limit     |
-| ---------------------------------------- | ------- | ---------- | -------------------- | -------------- |
-| `nvidia/nemotron-3-super-120b-a12b:free` | 262K    | 262K       | Text                 | 20 RPM, 50 RPD |
-| `cohere/north-mini-code:free`            | 256K    | 64K        | Text (code)          | 20 RPM, 50 RPD |
-| `google/gemma-4-26b-a4b-it:free`         | 262K    | 32K        | Text + Image         | 20 RPM, 50 RPD |
-| `google/gemma-4-31b-it:free`             | 262K    | 32K        | Text + Image         | 20 RPM, 50 RPD |
-| `nvidia/nemotron-nano-9b-v2:free`        | 128K    | —          | Text                 | 20 RPM, 50 RPD |
-| `nvidia/nemotron-nano-12b-v2-vl:free`    | 128K    | 128K       | Text + Image         | 20 RPM, 50 RPD |
-| `poolside/laguna-s-2.1:free`             | 262K    | 32K        | Text (code)          | 20 RPM, 50 RPD |
-| `poolside/laguna-xs-2.1:free`            | 262K    | 32K        | Text (code)          | 20 RPM, 50 RPD |
-| `apodex/apodex-1.1-mini:free`            | 262K    | 235K       | Text                 | 20 RPM, 50 RPD |
-| `inclusionai/ling-3.0-flash-sante:free`  | 262K    | 32K        | Text                 | 20 RPM, 50 RPD |
-| `qwen/qwen3.8-27b:free`                  | 262K    | 235K       | Text + Image + Video | 20 RPM, 50 RPD |
-| `dots-studio/dots-3-note-preview:free`   | 512K    | 460K       | Text + Image         | 20 RPM, 50 RPD |
-| `liquid/lfm-2.5-2.6b:free`               | 64K     | 8K         | Text                 | 20 RPM, 50 RPD |
-| `nvidia/nemotron-3.5-lightning:free`     | 1M      | 65K        | Text                 | 20 RPM, 50 RPD |
-| `thinkingmachines/inkling:free`          | 1M      | 262K       | Text + Image + Audio | 20 RPM, 50 RPD |
-| `nvidia/nemotron-3-ultra-550b-a55b:free` | 1M      | 65K        | Text                 | 20 RPM, 50 RPD |
-| + 6 more free models                     | Varies  | Varies     | Text / Image         | 20 RPM, 50 RPD |
+| Model Name                                           | Context | Max Output | Modality                     | Rate Limit     |
+| ---------------------------------------------------- | ------- | ---------- | ---------------------------- | -------------- |
+| `nvidia/nemotron-3-super-120b-a12b:free`             | 262K    | 262K       | Text                         | 20 RPM, 50 RPD |
+| `cohere/north-mini-code:free`                        | 256K    | 64K        | Text (code)                  | 20 RPM, 50 RPD |
+| `google/gemma-4-26b-a4b-it:free`                     | 262K    | 32K        | Text + Image                 | 20 RPM, 50 RPD |
+| `google/gemma-4-31b-it:free`                         | 262K    | 32K        | Text + Image                 | 20 RPM, 50 RPD |
+| `nvidia/nemotron-nano-9b-v2:free`                    | 128K    | —          | Text                         | 20 RPM, 50 RPD |
+| `nvidia/nemotron-nano-12b-v2-vl:free`                | 128K    | 128K       | Text + Image                 | 20 RPM, 50 RPD |
+| `poolside/laguna-s-2.1:free`                         | 262K    | 32K        | Text (code)                  | 20 RPM, 50 RPD |
+| `poolside/laguna-xs-2.1:free`                        | 262K    | 32K        | Text (code)                  | 20 RPM, 50 RPD |
+| `apodex/apodex-1.1-mini:free`                        | 262K    | 235K       | Text                         | 20 RPM, 50 RPD |
+| `inclusionai/ling-3.0-flash-sante:free`              | 262K    | 32K        | Text                         | 20 RPM, 50 RPD |
+| `qwen/qwen3.8-27b:free`                              | 262K    | 235K       | Text + Image + Video         | 20 RPM, 50 RPD |
+| `dots-studio/dots-3-note-preview:free`               | 512K    | 460K       | Text + Image                 | 20 RPM, 50 RPD |
+| `liquid/lfm-2.5-2.6b:free`                           | 64K     | 8K         | Text                         | 20 RPM, 50 RPD |
+| `nvidia/nemotron-3.5-lightning:free`                 | 1M      | 65K        | Text                         | 20 RPM, 50 RPD |
+| `thinkingmachines/inkling:free`                      | 1M      | 262K       | Text + Image + Audio         | 20 RPM, 50 RPD |
+| `nvidia/nemotron-3-ultra-550b-a55b:free`             | 1M      | 65K        | Text                         | 20 RPM, 50 RPD |
+| `recursive/flint-v1.0:free`                          | 262K    | 235K       | Text                         | 20 RPM, 50 RPD |
+| `xingchen-agi/xing4.0-29b-a4b:free`                  | 262K    | 235K       | Text                         | 20 RPM, 50 RPD |
+| `nvidia/nemotron-3.5-super-vl:free`                  | 1M      | 131K       | Text + Image + Video         | 20 RPM, 50 RPD |
+| `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free` | 256K    | 65K        | Text + Image + Audio + Video | 20 RPM, 50 RPD |
+| + 6 more free models                                 | Varies  | Varies     | Text / Image                 | 20 RPM, 50 RPD |
 
 ### [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) 🇫🇷
 
@@ -330,7 +336,7 @@ Know a free tier that's missing? [Open a PR](contributing.md). Include the provi
 [^2]: Groq shut down qwen/qwen3.6-27b on September 14, 2026 (replaced by qwen/qwen3.8-27b) and groq/compound and groq/compound-mini on September 21, 2026 ([deprecations](https://console.groq.com/docs/deprecations)). Free-plan limits vary by model; the chat models listed get 1,000 RPD ([rate limits](https://console.groq.com/docs/rate-limits)).
 [^3]: Ollama Cloud measures usage by input, cached input, and output tokens weighted per model ([FAQ](https://docs.ollama.com/cloud)). Free tier has session limits resetting every 5 hours and weekly limits resetting every 7 days. Cloud models are also served through Ollama's OpenAI-compatible endpoint at ollama.com/v1.
 [^4]: Free models default to 50 RPD per model. A one-time purchase of $10+ in credits unlocks 1,000 RPD for free models. OpenRouter also offers a [Free Models Router](https://openrouter.ai/docs/guides/routing/routers/free-models-router) (`openrouter/free`) and [model fallbacks](https://openrouter.ai/docs/guides/routing/model-fallbacks) for chaining models in priority order. Free providers may log prompts for training.
-[^5]: Kilo Code's free pool changes frequently, and the /api/gateway/models catalog can lag what is actually served: probe results have confirmed models absent from the catalog still answering. Rows through liquid/lfm-2.5-2.6b:free answered a live request between 2026-08-19 and 2026-08-21; the rows after it were added on 2026-10-05 from the catalog, where they are priced at $0, and have not been probed. Free models are reachable with no API key, at 200 requests per hour per IP ([authentication](https://kilo.ai/docs/gateway/authentication)). The kilo-auto/free router picks a model from the free pool, and Kilo's docs warn it "may route your requests to providers that log prompts and outputs". The NVIDIA free endpoints carry NVIDIA's own condition, quoted on Kilo's [models page](https://kilo.ai/docs/gateway/models-and-providers): "Trial use only - do not submit personal or confidential data. Your use is logged for security purposes and to improve NVIDIA products and services."
+[^5]: Kilo Code's free pool changes frequently, and the /api/gateway/models catalog can lag what is actually served: probe results have confirmed models absent from the catalog still answering. Rows through liquid/lfm-2.5-2.6b:free answered a live request between 2026-08-19 and 2026-08-21; the rows after it were added on 2026-10-05 (through dots-studio/dots-3-note-preview:free) and 2026-10-23 from the catalog, where they are priced at $0, and have not been probed. The catalog describes reflection/beam-free as served through Vercel AI Gateway and notes that prompts may be retained for training. Free models are reachable with no API key, at 200 requests per hour per IP ([authentication](https://kilo.ai/docs/gateway/authentication)). The kilo-auto/free router picks a model from the free pool, and Kilo's docs warn it "may route your requests to providers that log prompts and outputs". The NVIDIA free endpoints carry NVIDIA's own condition, quoted on Kilo's [models page](https://kilo.ai/docs/gateway/models-and-providers): "Trial use only - do not submit personal or confidential data. Your use is logged for security purposes and to improve NVIDIA products and services."
 [^6]: API-Inference is free for registered users. Current published limits are 2,000 requests/day per user (total across models), with per-model daily quotas dynamically adjusted and capped at 500; concurrency is also dynamically rate-limited. Requires Alibaba Cloud account binding and real-name verification ([limits](https://modelscope.cn/docs/model-service/API-Inference/limits), [intro](https://modelscope.cn/docs/model-service/API-Inference/intro)).
 [^7]: OVHcloud AI Endpoints offers a permanent free anonymous tier (2 requests per minute per IP, per model) with no signup or API key required. Higher rate limits (400 RPM per Public Cloud project per model) require an API key and are billed pay-as-you-go per token; new Public Cloud accounts get up to $200 in free trial credits. Models are hosted in EU data centers.
 [^9]: SiliconFlow requires real-name identity verification to use free models (effective May 15, 2026, per the [release notes](https://api-docs.siliconflow.cn/docs/release-notes/overview)). Verification supports mainland-Chinese documents; international users must contact support.

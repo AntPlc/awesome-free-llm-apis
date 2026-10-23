@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-05",
+  "lastUpdated": "2026-10-23",
   "providers": [
     {
       "name": "Aion Labs",
@@ -456,7 +456,7 @@
           "name": "qwen/qwen3.8-27b",
           "context": "131K",
           "maxOutput": "16K",
-          "modality": "Text",
+          "modality": "Text + Image",
           "rateLimit": "30 RPM, 1,000 RPD"
         }
       ]
@@ -537,14 +537,6 @@
           "context": "1M",
           "maxOutput": "65K",
           "modality": "Text",
-          "rateLimit": "200 req/hr"
-        },
-        {
-          "id": "stepfun/step-3.7-flash:free",
-          "name": "stepfun/step-3.7-flash:free",
-          "context": "262K",
-          "maxOutput": "262K",
-          "modality": "Text + Vision",
           "rateLimit": "200 req/hr"
         },
         {
@@ -636,14 +628,6 @@
           "rateLimit": "200 req/hr"
         },
         {
-          "id": "inclusionai/ling-3.0-flash-sante:free",
-          "name": "inclusionai/ling-3.0-flash-sante:free",
-          "context": "262K",
-          "maxOutput": "32K",
-          "modality": "Text",
-          "rateLimit": "200 req/hr"
-        },
-        {
           "id": "apodex/apodex-1.1-mini:free",
           "name": "apodex/apodex-1.1-mini:free",
           "context": "262K",
@@ -652,19 +636,43 @@
           "rateLimit": "200 req/hr"
         },
         {
-          "id": "qwen/qwen3.8-27b:free",
-          "name": "qwen/qwen3.8-27b:free",
-          "context": "262K",
-          "maxOutput": "235K",
-          "modality": "Multimodal",
-          "rateLimit": "200 req/hr"
-        },
-        {
           "id": "dots-studio/dots-3-note-preview:free",
           "name": "dots-studio/dots-3-note-preview:free",
           "context": "512K",
           "maxOutput": "460K",
           "modality": "Text + Vision",
+          "rateLimit": "200 req/hr"
+        },
+        {
+          "id": "recursive/flint-v1.0:free",
+          "name": "recursive/flint-v1.0:free",
+          "context": "262K",
+          "maxOutput": "235K",
+          "modality": "Text (code)",
+          "rateLimit": "200 req/hr"
+        },
+        {
+          "id": "xingchen-agi/xing4.0-29b-a4b:free",
+          "name": "xingchen-agi/xing4.0-29b-a4b:free",
+          "context": "262K",
+          "maxOutput": "235K",
+          "modality": "Text",
+          "rateLimit": "200 req/hr"
+        },
+        {
+          "id": "nvidia/nemotron-3.5-super-vl:free",
+          "name": "nvidia/nemotron-3.5-super-vl:free",
+          "context": "1M",
+          "maxOutput": "131K",
+          "modality": "Multimodal",
+          "rateLimit": "200 req/hr"
+        },
+        {
+          "id": "reflection/beam-free",
+          "name": "reflection/beam-free",
+          "context": "1M",
+          "maxOutput": "131K",
+          "modality": "Text",
           "rateLimit": "200 req/hr"
         }
       ]
@@ -704,11 +712,19 @@
           "rateLimit": "60 RPM, 250 req/hr (free token)"
         },
         {
-          "id": "DeepSeek-V4-Flash-0731",
-          "name": "DeepSeek-V4-Flash-0731",
-          "context": "400K",
+          "id": "nemotron-3-nano:30b",
+          "name": "nemotron-3-nano:30b",
+          "context": "1M",
           "maxOutput": "—",
           "modality": "Text (reasoning)",
+          "rateLimit": "60 RPM, 250 req/hr (free token)"
+        },
+        {
+          "id": "codestral-latest",
+          "name": "codestral-latest",
+          "context": "32K",
+          "maxOutput": "—",
+          "modality": "Text",
           "rateLimit": "60 RPM, 250 req/hr (free token)"
         }
       ]
@@ -1048,6 +1064,38 @@
           "rateLimit": "20 RPM, 50 RPD"
         },
         {
+          "id": "recursive/flint-v1.0:free",
+          "name": "recursive/flint-v1.0:free",
+          "context": "262K",
+          "maxOutput": "235K",
+          "modality": "Text",
+          "rateLimit": "20 RPM, 50 RPD"
+        },
+        {
+          "id": "xingchen-agi/xing4.0-29b-a4b:free",
+          "name": "xingchen-agi/xing4.0-29b-a4b:free",
+          "context": "262K",
+          "maxOutput": "235K",
+          "modality": "Text",
+          "rateLimit": "20 RPM, 50 RPD"
+        },
+        {
+          "id": "nvidia/nemotron-3.5-super-vl:free",
+          "name": "nvidia/nemotron-3.5-super-vl:free",
+          "context": "1M",
+          "maxOutput": "131K",
+          "modality": "Text + Image + Video",
+          "rateLimit": "20 RPM, 50 RPD"
+        },
+        {
+          "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+          "name": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+          "context": "256K",
+          "maxOutput": "65K",
+          "modality": "Text + Image + Audio + Video",
+          "rateLimit": "20 RPM, 50 RPD"
+        },
+        {
           "id": null,
           "name": "+ 6 more free models",
           "context": "Varies",
@@ -1197,7 +1245,7 @@
     },
     {
       "id": 5,
-      "text": "Kilo Code's free pool changes frequently, and the /api/gateway/models catalog can lag what is actually served: probe results have confirmed models absent from the catalog still answering. Rows through liquid/lfm-2.5-2.6b:free answered a live request between 2026-08-19 and 2026-08-21; the rows after it were added on 2026-10-05 from the catalog, where they are priced at $0, and have not been probed. Free models are reachable with no API key, at 200 requests per hour per IP ([authentication](https://kilo.ai/docs/gateway/authentication)). The kilo-auto/free router picks a model from the free pool, and Kilo's docs warn it \"may route your requests to providers that log prompts and outputs\". The NVIDIA free endpoints carry NVIDIA's own condition, quoted on Kilo's [models page](https://kilo.ai/docs/gateway/models-and-providers): \"Trial use only - do not submit personal or confidential data. Your use is logged for security purposes and to improve NVIDIA products and services.\""
+      "text": "Kilo Code's free pool changes frequently, and the /api/gateway/models catalog can lag what is actually served: probe results have confirmed models absent from the catalog still answering. Rows through liquid/lfm-2.5-2.6b:free answered a live request between 2026-08-19 and 2026-08-21; the rows after it were added on 2026-10-05 (through dots-studio/dots-3-note-preview:free) and 2026-10-23 from the catalog, where they are priced at $0, and have not been probed. The catalog describes reflection/beam-free as served through Vercel AI Gateway and notes that prompts may be retained for training. Free models are reachable with no API key, at 200 requests per hour per IP ([authentication](https://kilo.ai/docs/gateway/authentication)). The kilo-auto/free router picks a model from the free pool, and Kilo's docs warn it \"may route your requests to providers that log prompts and outputs\". The NVIDIA free endpoints carry NVIDIA's own condition, quoted on Kilo's [models page](https://kilo.ai/docs/gateway/models-and-providers): \"Trial use only - do not submit personal or confidential data. Your use is logged for security purposes and to improve NVIDIA products and services.\""
     },
     {
       "id": 6,
