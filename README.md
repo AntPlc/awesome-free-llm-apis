@@ -281,7 +281,7 @@ Base URL: `https://openrouter.ai/api/v1`
 | ---------------------------------------------------- | ------- | ---------- | ---------------------------- | -------------- |
 | `nvidia/nemotron-3-super-120b-a12b:free`             | 262K    | 262K       | Text                         | 20 RPM, 50 RPD |
 | `cohere/north-mini-code:free`                        | 256K    | 64K        | Text (code)                  | 20 RPM, 50 RPD |
-| `google/gemma-4-26b-a4b-it:free`                     | 262K    | 32K        | Text + Image                 | 20 RPM, 50 RPD |
+| `google/gemma-4-26b-a4b-it:free`                     | 262K    | 32K        | Text + Image + Video         | 20 RPM, 50 RPD |
 | `google/gemma-4-31b-it:free`                         | 262K    | 32K        | Text + Image                 | 20 RPM, 50 RPD |
 | `nvidia/nemotron-nano-9b-v2:free`                    | 128K    | —          | Text                         | 20 RPM, 50 RPD |
 | `nvidia/nemotron-nano-12b-v2-vl:free`                | 128K    | 128K       | Text + Image                 | 20 RPM, 50 RPD |
