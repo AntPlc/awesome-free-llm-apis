@@ -1260,12 +1260,20 @@
       "footnoteRef": 9,
       "models": [
         {
-          "id": "Qwen/Qwen3-8B",
-          "name": "Qwen/Qwen3-8B",
-          "context": "128K",
+          "id": "tencent/Hunyuan-MT-7B",
+          "name": "tencent/Hunyuan-MT-7B",
+          "context": "—",
           "maxOutput": "—",
           "modality": "Text",
-          "rateLimit": "1,000 RPM, 50,000 TPM"
+          "rateLimit": "—"
+        },
+        {
+          "id": "XingChenAGI/Xing4.0-29B",
+          "name": "XingChenAGI/Xing4.0-29B",
+          "context": "—",
+          "maxOutput": "—",
+          "modality": "Text",
+          "rateLimit": "—"
         }
       ]
     }
@@ -1293,7 +1301,7 @@
     },
     {
       "id": 6,
-      "text": "API-Inference is free for registered users. Current published limits are 2,000 requests/day per user (total across models), with per-model daily quotas dynamically adjusted and capped at 500; concurrency is also dynamically rate-limited. Requires Alibaba Cloud account binding and real-name verification ([limits](https://modelscope.cn/docs/model-service/API-Inference/limits), [intro](https://modelscope.cn/docs/model-service/API-Inference/intro))."
+      "text": "API-Inference is free for registered users. Current published limits are 2,000 requests/day per user (total across models), with per-model daily quotas dynamically adjusted and capped at 500; concurrency is also dynamically rate-limited. Requires Alibaba Cloud account binding and real-name verification ([limits](https://modelscope.cn/docs/model-service/API-Inference/limits), [intro](https://modelscope.cn/docs/model-service/API-Inference/intro)). This entry is based on ModelScope's documentation. It cannot be tested from outside mainland China."
     },
     {
       "id": 7,
@@ -1301,7 +1309,7 @@
     },
     {
       "id": 9,
-      "text": "SiliconFlow requires real-name identity verification to use free models (effective May 15, 2026, per the [release notes](https://api-docs.siliconflow.cn/docs/release-notes/overview)). Verification supports mainland-Chinese documents; international users must contact support."
+      "text": "SiliconFlow requires real-name identity verification to use free models (effective May 15, 2026, per the [release notes](https://api-docs.siliconflow.cn/docs/release-notes/overview)). Verification supports mainland-Chinese documents; international users must contact support. This entry is based on SiliconFlow's [pricing page](https://siliconflow.cn/pricing), which marks these models free. It cannot be tested from outside mainland China."
     },
     {
       "id": 10,
