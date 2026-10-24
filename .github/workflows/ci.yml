@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -16,3 +18,9 @@ jobs:
         run: node scripts/validate-data.js
       - name: README generates from data.json
         run: node scripts/generate-readme.js
+      - name: Every changed source still has its quote on its page
+        run: |
+          git fetch -q origin main
+          if git diff --name-only origin/main...HEAD | grep -qx sources.json; then
+            node scripts/check-sources.js --out /tmp/sources-report.json --strict
+          fi
