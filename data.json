@@ -169,7 +169,7 @@
           "context": "1M",
           "maxOutput": "65K",
           "modality": "Text + Image + Audio + Video",
-          "rateLimit": "15 RPM, 1,500 RPD"
+          "rateLimit": "—"
         },
         {
           "id": "gemini-3.5-flash-lite",
@@ -177,7 +177,7 @@
           "context": "1M",
           "maxOutput": "65K",
           "modality": "Text + Image + Audio + Video",
-          "rateLimit": "15 RPM, 500 RPD"
+          "rateLimit": "—"
         },
         {
           "id": "gemini-3.1-flash-lite",
@@ -185,7 +185,7 @@
           "context": "1M",
           "maxOutput": "65K",
           "modality": "Text + Image + Audio + Video",
-          "rateLimit": "15 RPM, 500 RPD"
+          "rateLimit": "—"
         },
         {
           "id": "gemini-2.5-flash",
@@ -193,7 +193,7 @@
           "context": "1M",
           "maxOutput": "65K",
           "modality": "Text + Image + Audio + Video",
-          "rateLimit": "15 RPM, 1,500 RPD"
+          "rateLimit": "—"
         },
         {
           "id": "gemini-2.5-flash-lite",
@@ -201,7 +201,7 @@
           "context": "1M",
           "maxOutput": "65K",
           "modality": "Text + Image + Audio + Video",
-          "rateLimit": "30 RPM, 1,500 RPD"
+          "rateLimit": "—"
         },
         {
           "id": "gemma-4-31b-it",
@@ -602,6 +602,30 @@
           "maxOutput": "131K",
           "modality": "Text",
           "rateLimit": "200 req/hr"
+        },
+        {
+          "id": "nvidia/nemotron-3-super-120b-a12b:free",
+          "name": "nvidia/nemotron-3-super-120b-a12b:free",
+          "context": "262K",
+          "maxOutput": "235K",
+          "modality": "Text",
+          "rateLimit": "200 req/hr"
+        },
+        {
+          "id": "stealth/glyph-cluster",
+          "name": "stealth/glyph-cluster",
+          "context": "256K",
+          "maxOutput": "256K",
+          "modality": "Text (code)",
+          "rateLimit": "200 req/hr"
+        },
+        {
+          "id": "nvidia/nemotron-3.5-content-safety:free",
+          "name": "nvidia/nemotron-3.5-content-safety:free",
+          "context": "128K",
+          "maxOutput": "8K",
+          "modality": "Text + Vision (moderation)",
+          "rateLimit": "200 req/hr"
         }
       ]
     },
@@ -920,11 +944,11 @@
           "rateLimit": "20 RPM, 50 RPD"
         },
         {
-          "id": null,
-          "name": "+ 1 more free model (content safety)",
-          "context": "Varies",
-          "maxOutput": "Varies",
-          "modality": "Text / Image",
+          "id": "nvidia/nemotron-3.5-content-safety:free",
+          "name": "nvidia/nemotron-3.5-content-safety:free",
+          "context": "128K",
+          "maxOutput": "8K",
+          "modality": "Text + Image (moderation)",
           "rateLimit": "20 RPM, 50 RPD"
         }
       ]
@@ -1008,7 +1032,7 @@
           "name": "Mistral-Small-3.2-24B-Instruct",
           "context": "128K",
           "maxOutput": "~4K",
-          "modality": "Text + Image",
+          "modality": "Text + Vision",
           "rateLimit": "2 RPM (anonymous)"
         },
         {
@@ -1065,11 +1089,11 @@
     },
     {
       "id": 4,
-      "text": "Free models default to 50 RPD per model. A one-time purchase of $10+ in credits unlocks 1,000 RPD for free models. OpenRouter also offers a [Free Models Router](https://openrouter.ai/docs/guides/routing/routers/free-router) (`openrouter/free`) and [model fallbacks](https://openrouter.ai/docs/guides/routing/model-fallbacks) for chaining models in priority order. Free providers may log prompts for training."
+      "text": "Free models allow 20 requests per minute and 50 requests per day, counted across all free models. Accounts that bought at least 10 credits get 1,000 requests per day ([limits](https://openrouter.ai/docs/api-reference/limits)). OpenRouter also offers a [Free Models Router](https://openrouter.ai/docs/guides/routing/routers/free-router) (`openrouter/free`) and [model fallbacks](https://openrouter.ai/docs/guides/routing/model-fallbacks) for chaining models in priority order. Free providers may log prompts for training."
     },
     {
       "id": 5,
-      "text": "Kilo Code's free pool changes frequently, and the /api/gateway/models catalog can lag what is actually served: probe results have confirmed models absent from the catalog still answering. Rows through liquid/lfm-2.5-2.6b:free answered a live request between 2026-08-19 and 2026-08-21; the rows after it were added on 2026-10-05 (through dots-studio/dots-3-note-preview:free) and 2026-10-23 from the catalog, where they are priced at $0, and have not been probed. The catalog describes reflection/beam-free as served through Vercel AI Gateway and notes that prompts may be retained for training. Free models are reachable with no API key, at 200 requests per hour per IP ([authentication](https://kilo.ai/docs/gateway/authentication)). The kilo-auto/free router picks a model from the free pool, and Kilo's docs warn it \"may route your requests to providers that log prompts and outputs\". The NVIDIA free endpoints carry NVIDIA's own condition, quoted on Kilo's [models page](https://kilo.ai/docs/gateway/models-and-providers): \"Trial use only - do not submit personal or confidential data. Your use is logged for security purposes and to improve NVIDIA products and services.\""
+      "text": "Kilo Code's free pool changes frequently, and the /api/gateway/models catalog can lag what is actually served: probe results have confirmed models absent from the catalog still answering. Rows through liquid/lfm-2.5-2.6b:free answered a live request between 2026-08-19 and 2026-08-21; the rows after it were added on 2026-10-05 (through dots-studio/dots-3-note-preview:free) 2026-10-23 and 2026-10-25 from the catalog, where they are priced at $0, and have not been probed. The catalog describes reflection/beam-free as served through Vercel AI Gateway and notes that prompts may be retained for training. Free models are reachable with no API key, at 200 requests per hour per IP ([authentication](https://kilo.ai/docs/gateway/authentication)). The kilo-auto/free router picks a model from the free pool, and Kilo's docs warn it \"may route your requests to providers that log prompts and outputs\". The NVIDIA free endpoints carry NVIDIA's own condition, quoted on Kilo's [models page](https://kilo.ai/docs/gateway/models-and-providers): \"Trial use only - do not submit personal or confidential data. Your use is logged for security purposes and to improve NVIDIA products and services.\""
     },
     {
       "id": 6,
@@ -1097,7 +1121,7 @@
     },
     {
       "id": 13,
-      "text": "Mistral plans are global: the monthly allowance is shared across Studio, the API, and Vibe Code, so CLI usage eats the same budget ([subscriptions](https://docs.mistral.ai/admin/billing-usage/subscriptions)). Free mode is the default for new accounts and needs no credit card ([quickstart](https://docs.mistral.ai/getting-started/quickstarts/studio/activate-and-generate-api-key)), and the Free plan card on the [pricing page](https://mistral.ai/pricing) lists no API credit amount (Pro includes $15/month in API credits). Free-mode inputs and outputs may be used to train Mistral models, and you can opt out at any time ([data usage](https://help.mistral.ai/en/articles/347617-do-you-use-my-user-data-to-train-your-artificial-intelligence-models)). Mistral no longer publishes numeric free-tier rate limits and points you at the Limits page of the admin panel instead ([rate limits](https://help.mistral.ai/en/articles/698531-why-am-i-hitting-api-rate-limits-and-how-do-i-increase-them)); the rate limit column is kept from the last published values."
+      "text": "Mistral plans are global: the monthly allowance is shared across Studio, the API, and Vibe Code, so CLI usage eats the same budget ([subscriptions](https://docs.mistral.ai/admin/billing-usage/subscriptions)). Free mode is the default for new accounts and needs no credit card ([quickstart](https://docs.mistral.ai/getting-started/quickstarts/studio/activate-and-generate-api-key)), and the Free plan card on the [pricing page](https://mistral.ai/pricing) lists no API credit amount. Free-mode inputs and outputs may be used to train Mistral models, and you can opt out at any time ([data usage](https://help.mistral.ai/en/articles/347617-do-you-use-my-user-data-to-train-your-artificial-intelligence-models)). Mistral no longer publishes numeric free-tier rate limits and points you at the Limits page of the admin panel instead ([rate limits](https://help.mistral.ai/en/articles/698531-why-am-i-hitting-api-rate-limits-and-how-do-i-increase-them)); the rate limit column is kept from the last published values."
     },
     {
       "id": 14,

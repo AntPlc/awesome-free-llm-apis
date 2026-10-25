@@ -12,8 +12,11 @@
 //   --previous  yesterday's report: a page error or a broken link counts only on the
 //               second day in a row
 //   --sources   another knowledge base file (default: sources.json at the repository root)
-//   --strict    exit 1 when a sourced fact is not OK or a link answers 404 or 410
-//               (CI runs this on PRs that change sources.json)
+//   --strict      exit 1 when a sourced fact is not OK or a link answers 404 or 410
+//                 (CI runs this on PRs that change sources.json)
+//   --consistent  exit 1 only when data.json and sources.json disagree (VALUE_DRIFT or
+//                 ROW_GONE). These depend on the files alone, never on a page being up.
+//                 (CI runs this on PRs that change data.json only)
 
 const fs = require('fs');
 const path = require('path');
@@ -29,6 +32,7 @@ const outFile = getArg('--out');
 const previousFile = getArg('--previous');
 const sourcesFile = getArg('--sources');
 const strict = args.includes('--strict');
+const consistent = args.includes('--consistent');
 if (!outFile) {
 	console.error('Usage: node scripts/check-sources.js --out <report.json> [--previous <report.json>] [--sources <sources.json>] [--strict]');
 	process.exit(1);
@@ -78,10 +82,18 @@ function allFacts() {
 // ---------------------------------------------------------------------------
 function allLinks() {
 	const links = new Map();
+	// An API root such as https://ollama.com/v1 is an endpoint, not a page. It is
+	// skipped only on the host of a provider's base URL.
+	const apiHosts = new Set(data.providers.filter(p => p.baseUrl).map(p => new URL(p.baseUrl).host));
 	const add = (url, where) => {
 		const clean = url.replace(/[).,;]+$/, '');
-		// An API root such as https://ollama.com/v1 is an endpoint, not a page.
-		if (/\/v\d+$/.test(clean)) return;
+		let u;
+		try {
+			u = new URL(clean);
+		} catch {
+			return;
+		}
+		if (apiHosts.has(u.host) && /^\/(api\/)?v\d+\/?$/.test(u.pathname)) return;
 		if (!links.has(clean)) links.set(clean, []);
 		links.get(clean).push(where);
 	};
@@ -112,6 +124,8 @@ function get(url, redirects = 5) {
 			headers: {
 				'User-Agent': 'awesome-free-llm-apis source check (+https://github.com/mnfst/awesome-free-llm-apis)',
 				Accept: 'text/markdown, text/plain, text/html, application/json;q=0.9, */*;q=0.5',
+				// Some docs sites pick a language from this header. The quotes are in English.
+				'Accept-Language': 'en',
 			},
 			timeout: TIMEOUT_MS,
 		}, res => {
@@ -291,6 +305,7 @@ async function run() {
 	}
 
 	if (strict && (facts.some(f => f.state !== 'OK') || linkResults.some(l => l.state === 'BROKEN'))) process.exit(1);
+	if (consistent && facts.some(f => ['VALUE_DRIFT', 'ROW_GONE'].includes(f.state))) process.exit(1);
 }
 
 run().catch(err => {

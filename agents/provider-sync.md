@@ -29,7 +29,8 @@ A probe sends one short chat request and records the HTTP status.
 The results are on the branch `probe-results`:
 
 - `probes-latest.json`: the latest run. Field `generatedAt` is its time.
-- `history/YYYY-MM-DD.json`: one file per day.
+- `history/YYYY-MM-DD.json`: one probe file per day. The same folder also holds
+  `history/sources-YYYY-MM-DD.json` (the doc report). Those are not probe files.
 
 Read them with `git fetch origin probe-results` and `git show origin/probe-results:<path>`.
 Each record in `modelResults` has `provider`, `modelId`, `verdict`, `httpStatus`.
@@ -69,8 +70,8 @@ The result is `sources-latest.json` on the branch `probe-results` (one copy per 
 
 1. Read `probes-latest.json`. If `generatedAt` is older than 26 hours: do not open a PR.
    Post the Slack line "⚠️ Probe report is stale (last run <date>)." and stop.
-2. Read the last two daily files in `history/`. If fewer than two exist, rule R1 cannot
-   apply this run.
+2. Read the last two probe files `history/YYYY-MM-DD.json` (never the `sources-*` files).
+   If fewer than two exist, rule R1 cannot apply this run.
 3. Read `sources-latest.json`. If it is missing or older than 26 hours, say so in the Slack
    report ("⚠️ Doc report is stale") and skip rules R6 and R7.
 4. Apply rules R1 to R8 below. Collect every change.
@@ -79,8 +80,10 @@ The result is `sources-latest.json` on the branch `probe-results` (one copy per 
 6. If you collected zero changes: do not open a PR.
 7. Else: create the branch `data/sync-YYYY-MM-DD` from main, edit data.json and sources.json,
    run `node scripts/validate-data.js` and
-   `node scripts/check-sources.js --out /tmp/sources.json --strict`. Both must pass. Commit,
-   push, and open one PR (format below).
+   `node scripts/check-sources.js --out /tmp/sources.json --consistent`. Both must pass.
+   Then open /tmp/sources.json: every entry and link that your PR changed must have
+   `state: "OK"`. Entries you did not touch do not block the PR. Commit, push, and open one
+   PR (format below).
 8. Post the Slack message (format below).
 
 ## Rules
@@ -129,6 +132,7 @@ Action: open the page of the record. Find what the page says now about that fact
 - The page states a new value (a new limit, a new credit amount, a new plan): change
   data.json to that value. In sources.json, set the entry's `value` to the new data.json
   value and its `quote` to the new text of the page. Cite the page and the quote in the PR.
+- The page states the same value in new words: update only the entry's `quote`.
 - The page moved: find the new page on the provider's own domain (follow the redirect, the
   docs navigation, `llms.txt` or `sitemap.xml`). Update the entry's `url` and `quote`.
 - The page says the free tier no longer exists: change nothing. Put the provider in the ❓
