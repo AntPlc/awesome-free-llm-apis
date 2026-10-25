@@ -3,12 +3,17 @@
 
 // Checks that every fact of data.json still has its proof on an official page.
 // sources.json maps each fact to a page and a short quote copied from that page.
-// The script opens each page once, looks for each quote, and compares the public
-// model catalogs with data.json. It uses no model and no API key.
+// The script opens each page once, looks for each quote, opens every link that
+// data.json shows to readers, and compares the public model catalogs with data.json.
+// It uses no model and no API key.
 //
-// Usage: node scripts/check-sources.js --out <report.json> [--previous <report.json>] [--strict]
-//   --previous  yesterday's report: a page error counts only on the second day in a row
-//   --strict    exit 1 when a sourced fact is not OK (CI runs this on PRs that change sources.json)
+// Usage: node scripts/check-sources.js --out <report.json> [--previous <report.json>]
+//          [--sources <sources.json>] [--strict]
+//   --previous  yesterday's report: a page error or a broken link counts only on the
+//               second day in a row
+//   --sources   another knowledge base file (default: sources.json at the repository root)
+//   --strict    exit 1 when a sourced fact is not OK or a link answers 404 or 410
+//               (CI runs this on PRs that change sources.json)
 
 const fs = require('fs');
 const path = require('path');
@@ -22,15 +27,16 @@ const getArg = flag => {
 };
 const outFile = getArg('--out');
 const previousFile = getArg('--previous');
+const sourcesFile = getArg('--sources');
 const strict = args.includes('--strict');
 if (!outFile) {
-	console.error('Usage: node scripts/check-sources.js --out <report.json> [--previous <report.json>] [--strict]');
+	console.error('Usage: node scripts/check-sources.js --out <report.json> [--previous <report.json>] [--sources <sources.json>] [--strict]');
 	process.exit(1);
 }
 
 const ROOT = path.join(__dirname, '..');
 const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'data.json'), 'utf8'));
-const base = JSON.parse(fs.readFileSync(path.join(ROOT, 'sources.json'), 'utf8'));
+const base = JSON.parse(fs.readFileSync(sourcesFile || path.join(ROOT, 'sources.json'), 'utf8'));
 const previous = previousFile && fs.existsSync(previousFile)
 	? JSON.parse(fs.readFileSync(previousFile, 'utf8'))
 	: null;
@@ -64,6 +70,30 @@ function allFacts() {
 		}
 	}
 	return facts;
+}
+
+// ---------------------------------------------------------------------------
+// Links that data.json shows to readers: each provider page, and every link in a
+// description or a footnote. Base URLs are API endpoints, not pages, so they are left out.
+// ---------------------------------------------------------------------------
+function allLinks() {
+	const links = new Map();
+	const add = (url, where) => {
+		const clean = url.replace(/[).,;]+$/, '');
+		// An API root such as https://ollama.com/v1 is an endpoint, not a page.
+		if (/\/v\d+$/.test(clean)) return;
+		if (!links.has(clean)) links.set(clean, []);
+		links.get(clean).push(where);
+	};
+	const scan = (text, where) => {
+		for (const m of (text || '').matchAll(/https?:\/\/[^\s)\]>"'`]+/g)) add(m[0], where);
+	};
+	for (const p of data.providers) {
+		add(p.url, `${p.name} url`);
+		scan(p.description, `${p.name} description`);
+	}
+	for (const f of data.footnotes) scan(f.text, `footnote ${f.id}`);
+	return [...links].map(([url, where]) => ({ url, where }));
 }
 
 // ---------------------------------------------------------------------------
@@ -202,6 +232,18 @@ async function run() {
 		catalogResults.push({ provider: c.provider, url: c.url, httpStatus: res.status, state: 'OK', size: ids.length, gone, new: fresh });
 	}
 
+	// A link is broken only when the server says the page does not exist (404 or 410).
+	// Login pages, bot walls (401, 403, 429) and network errors say nothing about the link.
+	const prevLinks = new Map((previous?.links || []).map(l => [l.url, l]));
+	const linkResults = [];
+	for (const l of allLinks()) {
+		const res = pages[l.url] || await get(l.url);
+		const status = res.httpStatus ?? res.status;
+		const state = status === 404 || status === 410 ? 'BROKEN' : status >= 200 && status < 300 ? 'OK' : 'UNCHECKED';
+		const signal = state === 'BROKEN' && prevLinks.get(l.url)?.state === 'BROKEN';
+		linkResults.push({ url: l.url, where: l.where, httpStatus: status, state, signal });
+	}
+
 	const sourced = new Set(facts.map(f => factKey(f.provider, f.model, f.fact)));
 	const unsourced = allFacts().filter(k => !sourced.has(k));
 	const count = state => facts.filter(f => f.state === state).length;
@@ -221,9 +263,13 @@ async function run() {
 			signals: facts.filter(f => f.signal).length,
 			modelsGone: catalogResults.reduce((n, c) => n + c.gone.length, 0),
 			modelsNew: catalogResults.reduce((n, c) => n + c.new.length, 0),
+			links: linkResults.length,
+			linksBroken: linkResults.filter(l => l.state === 'BROKEN').length,
+			linkSignals: linkResults.filter(l => l.signal).length,
 		},
 		facts,
 		catalogs: catalogResults,
+		links: linkResults,
 		pages: Object.values(pages).map(({ text, ...rest }) => rest),
 		unsourced: unsourced.map(k => {
 			const [provider, model, fact] = k.split('|');
@@ -239,7 +285,12 @@ async function run() {
 		console.log(`  ${f.state.padEnd(13)} ${f.provider} ${f.model || ''} ${f.fact}: ${f.url}`);
 	}
 
-	if (strict && facts.some(f => f.state !== 'OK')) process.exit(1);
+	console.log(`links: ${s.links} checked, ${s.linksBroken} broken, ${s.linkSignals} broken two days in a row`);
+	for (const l of linkResults.filter(x => x.state === 'BROKEN')) {
+		console.log(`  BROKEN ${l.httpStatus} ${l.url} (${l.where.join(', ')})`);
+	}
+
+	if (strict && (facts.some(f => f.state !== 'OK') || linkResults.some(l => l.state === 'BROKEN'))) process.exit(1);
 }
 
 run().catch(err => {
