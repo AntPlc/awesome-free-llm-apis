@@ -2,7 +2,6 @@
   "sources": [],
   "catalogs": [
     { "provider": "OpenRouter", "type": "openrouter", "url": "https://openrouter.ai/api/v1/models" },
-    { "provider": "Ollama Cloud", "type": "ollama", "url": "https://ollama.com/api/tags" },
-    { "provider": "Hugging Face", "type": "openai", "url": "https://router.huggingface.co/v1/models" }
+    { "provider": "Ollama Cloud", "type": "ollama", "url": "https://ollama.com/api/tags" }
   ]
 }
