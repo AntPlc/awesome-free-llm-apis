@@ -191,18 +191,14 @@ Base URL: `https://api.kilo.ai/api/gateway`
 | Model Name                                           | Context | Max Output | Modality      | Rate Limit |
 | ---------------------------------------------------- | ------- | ---------- | ------------- | ---------- |
 | `nvidia/nemotron-3-ultra-550b-a55b:free`             | 1M      | 65K        | Text          | 200 req/hr |
-| `nvidia/nemotron-3-super-120b-a12b:free`             | 262K    | 262K       | Text          | 200 req/hr |
 | `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free` | 256K    | 65K        | Multimodal    | 200 req/hr |
 | `poolside/laguna-s-2.1:free`                         | 262K    | 32K        | Text (code)   | 200 req/hr |
 | `poolside/laguna-xs-2.1:free`                        | 262K    | 32K        | Text (code)   | 200 req/hr |
 | `cohere/north-mini-code:free`                        | 256K    | 64K        | Text (code)   | 200 req/hr |
 | `openrouter/free`                                    | Varies  | Varies     | Text          | 200 req/hr |
-| `tencent/hy3:free`                                   | 262K    | 128K       | Text          | 200 req/hr |
 | `nvidia/nemotron-3.5-lightning:free`                 | 1M      | 65K        | Text          | 200 req/hr |
 | `liquid/lfm-2.5-2.6b:free`                           | 64K     | 8K         | Text          | 200 req/hr |
 | `kilo-auto/free`                                     | 256K    | 32K        | Text          | 200 req/hr |
-| `inclusionai/ling-3.1-flash`                         | 262K    | 32K        | Text          | 200 req/hr |
-| `apodex/apodex-1.1-mini:free`                        | 262K    | 235K       | Text          | 200 req/hr |
 | `dots-studio/dots-3-note-preview:free`               | 512K    | 460K       | Text + Vision | 200 req/hr |
 | `recursive/flint-v1.0:free`                          | 262K    | 235K       | Text (code)   | 200 req/hr |
 | `xingchen-agi/xing4.0-29b-a4b:free`                  | 262K    | 235K       | Text          | 200 req/hr |
@@ -241,15 +237,12 @@ Free with NVIDIA Developer Program membership. 100+ models. Rate-limited per mod
 
 Base URL: `https://integrate.api.nvidia.com/v1`
 
-| Model Name                                | Context | Max Output | Modality                               | Rate Limit         |
-| ----------------------------------------- | ------- | ---------- | -------------------------------------- | ------------------ |
-| `nvidia/nemotron-3-super-120b-a12b`       | 1M      | 262K       | Text                                   | 40 RPM, 10,000 RPD |
-| `nvidia/llama-3.1-nemotron-ultra-253b-v1` | 128K    | 4K         | Text                                   | 40 RPM, 10,000 RPD |
-| `google/gemma-4-31b-it`                   | 262K    | 8K         | Text                                   | 40 RPM, 10,000 RPD |
-| `mistralai/mistral-large-2-instruct`      | 128K    | 4K         | Text                                   | 40 RPM, 10,000 RPD |
-| `nvidia/nemotron-3-ultra-550b-a55b`       | 1M      | 262K       | Text                                   | 40 RPM, 10,000 RPD |
-| `openai/gpt-oss-20b`                      | 131K    | 131K       | Text                                   | 40 RPM, 10,000 RPD |
-| + 92 more models                          | Varies  | Varies     | Text, Image, Video, Speech, Embeddings | 40 RPM, 10,000 RPD |
+| Model Name                          | Context | Max Output | Modality                               | Rate Limit         |
+| ----------------------------------- | ------- | ---------- | -------------------------------------- | ------------------ |
+| `google/gemma-4-31b-it`             | 262K    | 8K         | Text                                   | 40 RPM, 10,000 RPD |
+| `nvidia/nemotron-3-ultra-550b-a55b` | 1M      | 262K       | Text                                   | 40 RPM, 10,000 RPD |
+| `openai/gpt-oss-20b`                | 131K    | 131K       | Text                                   | 40 RPM, 10,000 RPD |
+| + 92 more models                    | Varies  | Varies     | Text, Image, Video, Speech, Embeddings | 40 RPM, 10,000 RPD |
 
 ### [Ollama Cloud](https://ollama.com/settings/keys) 🇺🇸
 
@@ -257,18 +250,12 @@ Free tier with usage limits. 16 cloud model families from the Ollama library. Op
 
 Base URL: `https://ollama.com/api`
 
-| Model Name             | Context | Max Output      | Modality | Rate Limit                          |
-| ---------------------- | ------- | --------------- | -------- | ----------------------------------- |
-| deepseek-v4-pro        | 1M      | Model-dependent | Text     | Session/weekly limits (unpublished) |
-| deepseek-v4-flash      | 1M      | Model-dependent | Text     | Session/weekly limits (unpublished) |
-| minimax-m3             | 512K    | Model-dependent | Text     | Session/weekly limits (unpublished) |
-| kimi-k3                | 1M      | Model-dependent | Text     | Session/weekly limits (unpublished) |
-| `gpt-oss:120b`         | 128K    | Model-dependent | Text     | Session/weekly limits (unpublished) |
-| `gpt-oss:20b`          | 131K    | Model-dependent | Text     | Session/weekly limits (unpublished) |
-| nemotron-3-ultra       | 262K    | Model-dependent | Text     | Session/weekly limits (unpublished) |
-| `mistral-large-3:675b` | 256K    | Model-dependent | Text     | Session/weekly limits (unpublished) |
-| `qwen3.5:397b`         | 256K    | Model-dependent | Text     | Session/weekly limits (unpublished) |
-| + 7 more cloud models  | Varies  | Varies          | Text     | Session/weekly limits (unpublished) |
+| Model Name            | Context | Max Output      | Modality | Rate Limit                          |
+| --------------------- | ------- | --------------- | -------- | ----------------------------------- |
+| `gpt-oss:120b`        | 128K    | Model-dependent | Text     | Session/weekly limits (unpublished) |
+| `gpt-oss:20b`         | 131K    | Model-dependent | Text     | Session/weekly limits (unpublished) |
+| nemotron-3-ultra      | 262K    | Model-dependent | Text     | Session/weekly limits (unpublished) |
+| + 7 more cloud models | Varies  | Varies          | Text     | Session/weekly limits (unpublished) |
 
 ### [OpenRouter](https://openrouter.ai/keys) 🇺🇸
 
@@ -278,17 +265,11 @@ Base URL: `https://openrouter.ai/api/v1`
 
 | Model Name                                           | Context | Max Output | Modality                     | Rate Limit     |
 | ---------------------------------------------------- | ------- | ---------- | ---------------------------- | -------------- |
-| `nvidia/nemotron-3-super-120b-a12b:free`             | 262K    | 262K       | Text                         | 20 RPM, 50 RPD |
 | `cohere/north-mini-code:free`                        | 256K    | 64K        | Text (code)                  | 20 RPM, 50 RPD |
 | `google/gemma-4-26b-a4b-it:free`                     | 262K    | 32K        | Text + Image + Video         | 20 RPM, 50 RPD |
 | `google/gemma-4-31b-it:free`                         | 262K    | 32K        | Text + Image                 | 20 RPM, 50 RPD |
-| `nvidia/nemotron-nano-9b-v2:free`                    | 128K    | —          | Text                         | 20 RPM, 50 RPD |
-| `nvidia/nemotron-nano-12b-v2-vl:free`                | 128K    | 128K       | Text + Image                 | 20 RPM, 50 RPD |
 | `poolside/laguna-s-2.1:free`                         | 262K    | 32K        | Text (code)                  | 20 RPM, 50 RPD |
 | `poolside/laguna-xs-2.1:free`                        | 262K    | 32K        | Text (code)                  | 20 RPM, 50 RPD |
-| `apodex/apodex-1.1-mini:free`                        | 262K    | 235K       | Text                         | 20 RPM, 50 RPD |
-| `inclusionai/ling-3.0-flash-sante:free`              | 262K    | 32K        | Text                         | 20 RPM, 50 RPD |
-| `qwen/qwen3.8-27b:free`                              | 262K    | 235K       | Text + Image + Video         | 20 RPM, 50 RPD |
 | `dots-studio/dots-3-note-preview:free`               | 512K    | 460K       | Text + Image                 | 20 RPM, 50 RPD |
 | `liquid/lfm-2.5-2.6b:free`                           | 64K     | 8K         | Text                         | 20 RPM, 50 RPD |
 | `nvidia/nemotron-3.5-lightning:free`                 | 1M      | 65K        | Text                         | 20 RPM, 50 RPD |
@@ -315,7 +296,6 @@ Base URL: `https://oai.endpoints.kepler.ai.cloud.ovh.net/v1`
 | Qwen3.8-27B                    | 262K    | —          | Text + Vision | 2 RPM (anonymous) |
 | Qwen3.6-27B                    | 262K    | ~32K       | Text + Vision | 2 RPM (anonymous) |
 | Qwen3.5-9B                     | 262K    | ~8K        | Text + Vision | 2 RPM (anonymous) |
-| Qwen3-32B                      | 131K    | ~32K       | Text          | 2 RPM (anonymous) |
 | Qwen2.5-VL-72B-Instruct        | 32K     | ~8K        | Text + Vision | 2 RPM (anonymous) |
 | Mistral-Small-3.2-24B-Instruct | 128K    | ~4K        | Text          | 2 RPM (anonymous) |
 | Mistral-Nemo-Instruct-2407     | 128K    | ~4K        | Text          | 2 RPM (anonymous) |
