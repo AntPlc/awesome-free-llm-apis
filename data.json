@@ -164,24 +164,8 @@
           "rateLimit": "—"
         },
         {
-          "id": "gemini-3.7-flash",
-          "name": "Gemini 3.7 Flash",
-          "context": "1M",
-          "maxOutput": "65K",
-          "modality": "Text + Image + Audio + Video",
-          "rateLimit": "—"
-        },
-        {
           "id": "gemini-3.6-flash",
           "name": "Gemini 3.6 Flash",
-          "context": "1M",
-          "maxOutput": "65K",
-          "modality": "Text + Image + Audio + Video",
-          "rateLimit": "15 RPM, 1,500 RPD"
-        },
-        {
-          "id": "gemini-3.5-flash",
-          "name": "Gemini 3.5 Flash",
           "context": "1M",
           "maxOutput": "65K",
           "modality": "Text + Image + Audio + Video",
@@ -224,7 +208,7 @@
           "name": "Gemma 4 31B",
           "context": "256K",
           "maxOutput": "32K",
-          "modality": "Text",
+          "modality": "Text + Image",
           "rateLimit": "—"
         },
         {
@@ -232,7 +216,7 @@
           "name": "Gemma 4 26B A4B",
           "context": "256K",
           "maxOutput": "32K",
-          "modality": "Text",
+          "modality": "Text + Image",
           "rateLimit": "—"
         }
       ]
@@ -244,7 +228,7 @@
       "flag": "🇫🇷",
       "url": "https://console.mistral.ai/api-keys",
       "baseUrl": "https://api.mistral.ai/v1",
-      "description": "Free mode, enabled by default, no credit card required. $10/month in API credits, and free-mode prompts may be used to train Mistral models unless you opt out.",
+      "description": "Free mode, enabled by default, no credit card required. Free-mode prompts may be used to train Mistral models unless you opt out.",
       "footnoteRef": 13,
       "models": [
         {
@@ -430,7 +414,7 @@
         {
           "id": "MiniMaxAI/MiniMax-M2.7",
           "name": "MiniMaxAI/MiniMax-M2.7",
-          "context": "204K",
+          "context": "200K",
           "maxOutput": "16K",
           "modality": "Text (reasoning)",
           "rateLimit": "~1M tokens/month (shared, varies by model)"
@@ -724,7 +708,7 @@
           "name": "google/gemma-4-31b-it",
           "context": "262K",
           "maxOutput": "8K",
-          "modality": "Text",
+          "modality": "Text + Image + Video",
           "rateLimit": "40 RPM, 10,000 RPD"
         },
         {
@@ -774,7 +758,7 @@
         {
           "id": "gpt-oss:20b",
           "name": "gpt-oss:20b",
-          "context": "131K",
+          "context": "128K",
           "maxOutput": "Model-dependent",
           "modality": "Text",
           "rateLimit": "1 concurrent request, monthly starter credits"
@@ -782,7 +766,7 @@
         {
           "id": "nemotron-3-ultra",
           "name": "nemotron-3-ultra",
-          "context": "262K",
+          "context": "256K",
           "maxOutput": "Model-dependent",
           "modality": "Text",
           "rateLimit": "1 concurrent request, monthly starter credits"
@@ -828,7 +812,7 @@
           "name": "google/gemma-4-31b-it:free",
           "context": "262K",
           "maxOutput": "32K",
-          "modality": "Text + Image",
+          "modality": "Text + Image + Video",
           "rateLimit": "20 RPM, 50 RPD"
         },
         {
@@ -920,8 +904,24 @@
           "rateLimit": "20 RPM, 50 RPD"
         },
         {
+          "id": "thinkingmachines/inkling-small:free",
+          "name": "thinkingmachines/inkling-small:free",
+          "context": "1M",
+          "maxOutput": "262K",
+          "modality": "Text + Image + Audio",
+          "rateLimit": "20 RPM, 50 RPD"
+        },
+        {
+          "id": "nvidia/nemotron-3-super-120b-a12b:free",
+          "name": "nvidia/nemotron-3-super-120b-a12b:free",
+          "context": "262K",
+          "maxOutput": "235K",
+          "modality": "Text",
+          "rateLimit": "20 RPM, 50 RPD"
+        },
+        {
           "id": null,
-          "name": "+ 6 more free models",
+          "name": "+ 1 more free model (content safety)",
           "context": "Varies",
           "maxOutput": "Varies",
           "modality": "Text / Image",
@@ -950,7 +950,7 @@
         {
           "id": "gpt-oss-120b",
           "name": "gpt-oss-120b",
-          "context": "128K",
+          "context": "131K",
           "maxOutput": "~32K",
           "modality": "Text",
           "rateLimit": "2 RPM (anonymous)"
@@ -958,7 +958,7 @@
         {
           "id": "gpt-oss-20b",
           "name": "gpt-oss-20b",
-          "context": "128K",
+          "context": "131K",
           "maxOutput": "~8K",
           "modality": "Text",
           "rateLimit": "2 RPM (anonymous)"
@@ -1008,13 +1008,13 @@
           "name": "Mistral-Small-3.2-24B-Instruct",
           "context": "128K",
           "maxOutput": "~4K",
-          "modality": "Text",
+          "modality": "Text + Image",
           "rateLimit": "2 RPM (anonymous)"
         },
         {
           "id": "Mistral-Nemo-Instruct-2407",
           "name": "Mistral-Nemo-Instruct-2407",
-          "context": "128K",
+          "context": "118K",
           "maxOutput": "~4K",
           "modality": "Text",
           "rateLimit": "2 RPM (anonymous)"
@@ -1077,7 +1077,7 @@
     },
     {
       "id": 7,
-      "text": "OVHcloud AI Endpoints offers a permanent free anonymous tier (2 requests per minute per IP, per model) with no signup or API key required. Higher rate limits (400 RPM per Public Cloud project per model) require an API key and are billed pay-as-you-go per token; new Public Cloud accounts get up to $200 in free trial credits. Models are hosted in EU data centers."
+      "text": "OVHcloud AI Endpoints offers a permanent free anonymous tier (2 requests per minute per IP, per model) with no signup or API key required. Higher rate limits (400 RPM per Public Cloud project per model) require an API key and are billed pay-as-you-go per token; new Public Cloud accounts get up to $200 in free trial credits. Models are hosted in EU data centers. The catalog lists an end of life on November 4, 2026 for Mistral-Small-3.2-24B-Instruct-2506 and Mistral-Nemo-Instruct-2407."
     },
     {
       "id": 9,
@@ -1097,11 +1097,11 @@
     },
     {
       "id": 13,
-      "text": "Mistral plans are global: the monthly allowance is shared across Studio, the API, and Vibe Code, so CLI usage eats the same budget ([subscriptions](https://docs.mistral.ai/admin/billing-usage/subscriptions)). Free mode is the default for new accounts and needs no credit card ([quickstart](https://docs.mistral.ai/getting-started/quickstarts/studio/activate-and-generate-api-key)), and the Free plan card on the [pricing page](https://mistral.ai/pricing) is what carries the $10/month in API credits figure quoted in the description. Free-mode inputs and outputs may be used to train Mistral models, and you can opt out at any time ([data usage](https://help.mistral.ai/en/articles/347617-do-you-use-my-user-data-to-train-your-artificial-intelligence-models)). Mistral no longer publishes numeric free-tier rate limits and points you at the Limits page of the admin panel instead ([rate limits](https://help.mistral.ai/en/articles/698531-why-am-i-hitting-api-rate-limits-and-how-do-i-increase-them)); the rate limit column is kept from the last published values."
+      "text": "Mistral plans are global: the monthly allowance is shared across Studio, the API, and Vibe Code, so CLI usage eats the same budget ([subscriptions](https://docs.mistral.ai/admin/billing-usage/subscriptions)). Free mode is the default for new accounts and needs no credit card ([quickstart](https://docs.mistral.ai/getting-started/quickstarts/studio/activate-and-generate-api-key)), and the Free plan card on the [pricing page](https://mistral.ai/pricing) lists no API credit amount (Pro includes $15/month in API credits). Free-mode inputs and outputs may be used to train Mistral models, and you can opt out at any time ([data usage](https://help.mistral.ai/en/articles/347617-do-you-use-my-user-data-to-train-your-artificial-intelligence-models)). Mistral no longer publishes numeric free-tier rate limits and points you at the Limits page of the admin panel instead ([rate limits](https://help.mistral.ai/en/articles/698531-why-am-i-hitting-api-rate-limits-and-how-do-i-increase-them)); the rate limit column is kept from the last published values."
     },
     {
       "id": 14,
-      "text": "The free grant is issued only after SMS verification with a real (non-VoIP) phone number, one grant per number ([billing docs](https://docs.gonkabroker.com/guides/billing-and-deposits/)). Unused free tokens do not carry over to the next month. The grant is sized as at least 1M tokens of the most expensive model; cheaper models stretch further (e.g. ~12.5M tokens for BGE-M3) ([free tier page](https://gonkabroker.com/free-llm-api/)). While running on free-tier funds only, requests are capped at a lower rate; the current cap is returned as `maxRpm` by `/test-auth` ([limits](https://docs.gonkabroker.com/reference/limits-and-quotas/))."
+      "text": "The free grant is issued only after SMS verification with a real (non-VoIP) phone number, one grant per number ([billing docs](https://docs.gonkabroker.com/guides/billing-and-deposits/)). Unused free tokens do not carry over to the next month. The grant is sized as at least 1M tokens of the most expensive model; cheaper models stretch further (e.g. ~6M tokens for BGE-M3) ([free tier page](https://gonkabroker.com/free-llm-api/)). While running on free-tier funds only, requests are capped at a lower rate; the current cap is returned as `maxRpm` by `/test-auth` ([limits](https://docs.gonkabroker.com/reference/limits-and-quotas/))."
     }
   ],
   "glossary": [
