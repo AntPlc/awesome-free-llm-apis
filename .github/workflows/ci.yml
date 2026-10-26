@@ -18,9 +18,12 @@ jobs:
         run: node scripts/validate-data.js
       - name: README generates from data.json
         run: node scripts/generate-readme.js
-      - name: Every changed source still has its quote on its page
+      - name: Sources and links still match data.json
         run: |
           git fetch -q origin main
-          if git diff --name-only origin/main...HEAD | grep -qx sources.json; then
+          changed="$(git diff --name-only origin/main...HEAD)"
+          if echo "$changed" | grep -qx sources.json; then
             node scripts/check-sources.js --out /tmp/sources-report.json --strict
+          elif echo "$changed" | grep -qx data.json; then
+            node scripts/check-sources.js --out /tmp/sources-report.json --consistent
           fi
