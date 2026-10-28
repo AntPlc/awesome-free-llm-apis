@@ -7,7 +7,7 @@ const path = require('path');
 const ROOT = path.join(__dirname, '..');
 const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'data.json'), 'utf8'));
 
-const OKAPI_URL = 'https://okapi.bot';
+const OKAPI_URL = 'https://okapi.bot/go/awesome-free-llm-apis';
 
 const HEADER = `<h1 align="center">
 \t<a href="https://github.com/mnfst/awesome-free-llm-apis">
