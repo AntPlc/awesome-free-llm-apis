@@ -27,6 +27,8 @@
 			<img src="media/okapi-logo-light.svg" width="180" alt="Okapi">
 		</picture>
 	</a>
+	<br>
+	<sub>Free API watcher. No more breaking changes.</sub>
 </p>
 
 <hr>
